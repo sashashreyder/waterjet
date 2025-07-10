@@ -1,0 +1,6 @@
+.heroBg {
+    background: linear-gradient(135deg, #e0f2fe, #dbeafe);
+    clip-path: ellipse(100% 100% at 50% 0%);
+  }
+  
+  
