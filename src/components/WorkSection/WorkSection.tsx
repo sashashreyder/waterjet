@@ -81,7 +81,6 @@ const WorksSection = () => {
           ))}
         </div>
 
-        {/* Стрелки */}
         <button
           onClick={handlePrev}
           className="absolute top-1/2 left-0 -translate-y-1/2 bg-white shadow-lg border border-slate-200 p-2 rounded-full hover:bg-sky-100 transition"
@@ -100,7 +99,6 @@ const WorksSection = () => {
         </button>
       </div>
 
-      {/* Модалка для увеличения изображения */}
       {zoomedImage && (
   <div
     className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center"

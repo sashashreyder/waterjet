@@ -8,7 +8,7 @@ const ContactSection = ({ onCallClick }: { onCallClick: () => void }) => {
     <section id="contact" className="bg-sky-50 py-20 px-4 md:px-8">
       <div className="max-w-6xl mx-auto" data-aos="fade-up">
         <div className="grid md:grid-cols-2 gap-10 items-start">
-          {/* Контактная информация */}
+
           <div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-slate-800 mb-12">
               Контакты
@@ -20,7 +20,6 @@ const ContactSection = ({ onCallClick }: { onCallClick: () => void }) => {
               <li><strong>Адрес:</strong> 142144, г. Москва, поселок Щапово, дом № 25</li>
             </ul>
 
-            {/* Кнопки */}
             <div className="flex gap-4 mt-15">
               <button
                 onClick={scrollToTop}
@@ -37,7 +36,6 @@ const ContactSection = ({ onCallClick }: { onCallClick: () => void }) => {
             </div>
           </div>
 
-          {/* Карта */}
           <div className="rounded-xl overflow-hidden shadow-lg w-full h-[400px]">
             <iframe
               title="Google Map"
