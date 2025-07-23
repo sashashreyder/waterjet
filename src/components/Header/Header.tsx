@@ -42,8 +42,7 @@ const Header = ({ onCallClick }: HeaderProps) => {
 
   const navItems = [
     { href: '#hero', label: 'Главная' },
-    { href: '#features', label: 'Преимущества' },
-    { href: '#features', label: 'Услуги' }, 
+    { href: '#features', label: 'Услуги' },
     { href: '#how', label: 'Как мы работаем' },
     { href: '#clients', label: 'Клиенты' },
     { href: '#works', label: 'Наши работы' },
@@ -78,18 +77,18 @@ const Header = ({ onCallClick }: HeaderProps) => {
         <>
           <button
             onClick={() => setMenuOpen((prev) => !prev)}
-            className="text-sky-600 transition-transform duration-300"
+            className="text-sky-600"
             aria-label="Открыть меню"
           >
             {menuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
 
           <div
+            ref={menuRef}
             className={`absolute right-0 top-[55px] w-64 bg-white shadow-xl rounded-xl px-6 py-5 z-40 transform transition-all duration-300 ${
-            menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
+              menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
             }`}
-             ref={menuRef}
-              >
+          >
             <nav className="flex flex-col gap-3 text-base text-slate-700">
               {navItems.map(({ href, label }) => (
                 <a

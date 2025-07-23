@@ -8,7 +8,7 @@ export const sanityClient = createClient({
 })
 
 export const fetchClients = async () =>
-  sanityClient.fetch(`*[_type == "client"]{name, logo}`)
+    sanityClient.fetch(`*[_type == "client"]{name, "logo": logo.asset->url}`)  
 
 export const fetchReviews = async () =>
   sanityClient.fetch(`*[_type == "review"]{name, text}`)
