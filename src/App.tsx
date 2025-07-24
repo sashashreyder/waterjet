@@ -5,7 +5,6 @@ import Modal from './components/Modal/Modal';
 import CallbackForm from './components/CallbackForm/CallbackForm';
 import ServicesSection from './components/ServicesSection/ServicesSection';
 import FeaturesSection from './components/FeaturesSection/FeaturesSection';
-import HowSection from './components/HowSection/HowSection';
 import ClientsSection from './components/ClientsSection/ClientsSections';
 import WorksSection from './components/WorkSection/WorkSection';
 import ContactSection from './components/ContactSection/ContactSection';
@@ -28,7 +27,6 @@ function App() {
       <main className="flex-grow">
         <Hero onCallClick={openModal} />
         <FeaturesSection />
-        <HowSection onCallClick={openModal} />
         <ServicesSection />
         <ClientsSection />
         <WorksSection />
