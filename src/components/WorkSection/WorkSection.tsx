@@ -48,7 +48,7 @@ const WorksSection = () => {
   }, [index]);
 
   return (
-    <section id="works" className="bg-white py-20 px-4 md:px-8">
+    <section id="works" className="bg-sky-50 py-20 px-4 md:px-8">
       <div className="max-w-6xl mx-auto text-center mb-12" data-aos="fade">
         <h2 className="text-4xl md:text-5xl font-extrabold text-slate-800 mb-4">
           Наши работы

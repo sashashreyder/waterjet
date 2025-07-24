@@ -5,7 +5,7 @@ const ContactSection = ({ onCallClick }: { onCallClick: () => void }) => {
   };
 
   return (
-    <section id="contact" className="bg-sky-50 py-20 px-4 md:px-8">
+    <section id="contact" className="bg-white py-20 px-4 md:px-8">
       <div className="max-w-6xl mx-auto" data-aos="fade-up">
         <div className="grid md:grid-cols-2 gap-10 items-start">
 

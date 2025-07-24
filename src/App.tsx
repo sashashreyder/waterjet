@@ -27,9 +27,9 @@ function App() {
       <main className="flex-grow">
         <Hero onCallClick={openModal} />
         <FeaturesSection />
-        <ServicesSection />
-        <ClientsSection />
         <WorksSection />
+        <ServicesSection />
+        <ClientsSection />     
         <ContactSection onCallClick={openModal} />
       </main>
 
