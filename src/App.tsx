@@ -7,6 +7,7 @@ import ServicesSection from './components/ServicesSection/ServicesSection';
 import FeaturesSection from './components/FeaturesSection/FeaturesSection';
 import ClientsSection from './components/ClientsSection/ClientsSections';
 import WorksSection from './components/WorkSection/WorkSection';
+import FAQ from './components/Faq';
 import ContactSection from './components/ContactSection/ContactSection';
 import Footer from './components/Footer/Footer';
 import { initAOS } from './aos';
@@ -30,6 +31,7 @@ function App() {
         <WorksSection />
         <ServicesSection />
         <ClientsSection />     
+        <FAQ />
         <ContactSection onCallClick={openModal} />
       </main>
 
