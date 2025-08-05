@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 
 const works = [
-  { image: 'public/works/камень резка.jpg', caption: 'Резка керамогранита' },
+  { image: 'public/works/800x600-rezka-keramogranita-photo-7-rezka-gidro.ru.ea0.jpg', caption: 'Резка керамогранита' },
   { image: 'public/works/800x600-rezka-mramora-rezka-gidro.ru-primer.bfe.jpg', caption: 'Резка натурального камня' },
-  { image: '/works/3.jpg', caption: 'Сложная геометрия фасада' },
-  { image: '/works/4.jpg', caption: 'Логотип из стали' },
-  { image: '/works/5.jpg', caption: 'Панели из акрила' },
-  { image: '/works/6.jpg', caption: 'Фасад из камня' },
-  { image: '/works/7.jpg', caption: 'Индивидуальный декор' },
-  { image: '/works/8.jpg', caption: 'Промышленная деталь' },
-  { image: '/works/9.jpg', caption: 'Сложная вставка из стекла' },
+  { image: 'public/works/800x600-rezka-iskusstvennogo-kamnya-teatr-rezka-gidro.ru.d7e.jpg', caption: 'Резка искусственного камня' },
+  { image: 'public/works/800x600-dsc06249.ddb.jpg', caption: 'Логотип из стали' },
+  { image: 'public/works/800x600-rezka-reziny-photo-4-rezka-gidro.ru.30e.jpg', caption: 'Резка резины' },
+  { image: 'public/works/800x600-rezka-plitki-photo-4-rezka-gidro.ru.a02.jpg', caption: 'Резка плитки' },
+  { image: 'public/works/800x600-gigrorezrka-orgsteklo-photo3.e9e.jpg', caption: 'Резка оргстекла и пластика' },
+  { image: 'public/works/800x600-rezka_stekla_inoks.793.jpg', caption: 'Резка стекла' },
+  { image: 'public/works/800x600-gigrorezrka-derevo-photo3.570.jpg', caption: 'Резка дерева' },
 ];
 
 const WorksSection = () => {
