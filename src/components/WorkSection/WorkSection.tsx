@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import CallToAction from '../CallToAction/CallToAction';
+import CallbackForm from '../CallbackForm/CallbackForm';
 
 const works = [
   { image: 'public/works/800x600-rezka-keramogranita-photo-7-rezka-gidro.ru.ea0.jpg', caption: 'Резка керамогранита' },
@@ -15,6 +17,7 @@ const works = [
 const WorksSection = () => {
   const [current, setCurrent] = useState(0);
   const [modalImage, setModalImage] = useState<string | null>(null);
+  const [showCallback, setShowCallback] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const total = works.length;
   const visibleSlides = 3;
@@ -25,6 +28,10 @@ const WorksSection = () => {
 
   const prevSlide = () => {
     setCurrent((prev) => (prev - visibleSlides + total) % total);
+  };
+
+  const onCallClick = () => {
+    setShowCallback(true);
   };
 
   useEffect(() => {
@@ -55,7 +62,7 @@ const WorksSection = () => {
           {visible.map((work, i) => (
             <div
               key={i}
-              className="w-full max-w-[400px] flex-shrink-0 bg-white rounded-2xl shadow overflow-hidden cursor-pointer hover:scale-100"
+              className="w-full max-w-[400px] flex-shrink-0 bg-white rounded-2xl shadow overflow-hidden cursor-pointer"
               onClick={() => setModalImage(work.image)}
             >
               <img
@@ -91,7 +98,6 @@ const WorksSection = () => {
         </button>
       </div>
 
-      {/* Modal */}
       {modalImage && (
         <div
           className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
@@ -106,11 +112,37 @@ const WorksSection = () => {
           </div>
         </div>
       )}
+
+<div className="mt-16 text-center transition-all duration-700 ease-out opacity-100 translate-y-0">
+  <CallToAction label="Заказать резку" onClick={onCallClick} />
+</div>
+
+
+      {showCallback && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+          onClick={() => setShowCallback(false)}
+        >
+          <div
+            className="bg-white p-8 rounded-xl shadow-lg max-w-md w-full relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-3 right-3 text-slate-400 hover:text-slate-700 text-xl"
+              onClick={() => setShowCallback(false)}
+            >
+              ×
+            </button>
+            <CallbackForm />
+          </div>
+        </div>
+      )}
     </section>
   );
 };
 
 export default WorksSection;
+
 
 
 
