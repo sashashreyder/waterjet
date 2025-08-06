@@ -2,16 +2,16 @@ import { useEffect, useRef, useState } from 'react';
 import CallToAction from '../CallToAction/CallToAction';
 import CallbackForm from '../CallbackForm/CallbackForm';
 
-const works = [
-  { image: 'public/works/800x600-rezka-keramogranita-photo-7-rezka-gidro.ru.ea0.jpg', caption: 'Резка керамогранита' },
-  { image: 'public/works/800x600-rezka-mramora-rezka-gidro.ru-primer.bfe.jpg', caption: 'Резка натурального камня' },
-  { image: 'public/works/800x600-rezka-iskusstvennogo-kamnya-teatr-rezka-gidro.ru.d7e.jpg', caption: 'Резка искусственного камня' },
-  { image: 'public/works/800x600-dsc06249.ddb.jpg', caption: 'Логотип из стали' },
-  { image: 'public/works/800x600-rezka-reziny-photo-4-rezka-gidro.ru.30e.jpg', caption: 'Резка резины' },
-  { image: 'public/works/800x600-rezka-plitki-photo-4-rezka-gidro.ru.a02.jpg', caption: 'Резка плитки' },
-  { image: 'public/works/800x600-gigrorezrka-orgsteklo-photo3.e9e.jpg', caption: 'Резка оргстекла и пластика' },
-  { image: 'public/works/800x600-rezka_stekla_inoks.793.jpg', caption: 'Резка стекла' },
-  { image: 'public/works/800x600-gigrorezrka-derevo-photo3.570.jpg', caption: 'Резка дерева' },
+const galleryImages = [
+  { image: '/works/800x600-rezka-keramogranita-photo-7-rezka-gidro.ru.ea0.jpg', caption: 'Резка керамогранита' },
+  { image: '/works/800x600-rezka-mramora-rezka-gidro.ru-primer.bfe.jpg', caption: 'Резка натурального камня' },
+  { image: '/works/800x600-rezka-iskusstvennogo-kamnya-teatr-rezka-gidro.ru.d7e.jpg', caption: 'Резка искусственного камня' },
+  { image: '/works/800x600-dsc06249.ddb.jpg', caption: 'Логотип из стали' },
+  { image: '/works/800x600-rezka-reziny-photo-4-rezka-gidro.ru.30e.jpg', caption: 'Резка резины' },
+  { image: '/works/800x600-rezka-plitki-photo-4-rezka-gidro.ru.a02.jpg', caption: 'Резка плитки' },
+  { image: '/works/800x600-gigrorezrka-orgsteklo-photo3.e9e.jpg', caption: 'Резка оргстекла и пластика' },
+  { image: '/works/800x600-rezka_stekla_inoks.793.jpg', caption: 'Резка стекла' },
+  { image: '/works/800x600-gigrorezrka-derevo-photo3.570.jpg', caption: 'Резка дерева' },
 ];
 
 const WorksSection = () => {
@@ -19,7 +19,7 @@ const WorksSection = () => {
   const [modalImage, setModalImage] = useState<string | null>(null);
   const [showCallback, setShowCallback] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const total = works.length;
+  const total = galleryImages.length;
   const visibleSlides = 3;
 
   const nextSlide = () => {
@@ -43,7 +43,7 @@ const WorksSection = () => {
 
   const visible = [];
   for (let i = 0; i < visibleSlides; i++) {
-    visible.push(works[(current + i) % total]);
+    visible.push(galleryImages[(current + i) % total]);
   }
 
   return (

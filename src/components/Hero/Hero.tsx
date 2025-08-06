@@ -3,7 +3,7 @@ import heroVideo from '../../assets/hero-bg.mp4';
 
 const Hero = ({ onCallClick }: { onCallClick: () => void }) => {
   return (
-    <section id='hero' className="relative w-full h-[100dvh] flex items-center justify-start overflow-hidden">
+    <section id="hero" className="relative w-full h-[100dvh] flex items-center justify-start overflow-hidden">
       <video
         className="absolute inset-0 w-full h-full object-cover z-0"
         src={heroVideo}
@@ -11,6 +11,7 @@ const Hero = ({ onCallClick }: { onCallClick: () => void }) => {
         muted
         loop
         playsInline
+        preload="auto"
       />
 
       {/* Overlay */}
