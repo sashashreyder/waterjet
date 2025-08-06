@@ -6,17 +6,19 @@ const Hero = ({ onCallClick }: { onCallClick: () => void }) => {
   useEffect(() => {
     const video = document.querySelector('video') as HTMLVideoElement | null;
     if (video) {
-
       video.setAttribute('webkit-playsinline', 'true');
 
-      if (video.paused) {
+      const tryPlay = () => {
         const playPromise = video.play();
         if (playPromise !== undefined) {
           playPromise.catch(() => {
-            console.log('Автозапуск видео заблокирован');
+            console.log('Автозапуск заблокирован. Попробую снова через 1 секунду...');
+            setTimeout(tryPlay, 1000);
           });
         }
-      }
+      };
+
+      tryPlay();
     }
   }, []);
 
@@ -30,7 +32,6 @@ const Hero = ({ onCallClick }: { onCallClick: () => void }) => {
         loop
         playsInline
         preload="auto"
-        controls={false}
       />
 
       {/* Overlay */}
@@ -64,6 +65,7 @@ const Hero = ({ onCallClick }: { onCallClick: () => void }) => {
 };
 
 export default Hero;
+
 
 
 
