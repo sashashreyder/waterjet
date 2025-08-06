@@ -1,32 +1,37 @@
-import CallToAction from '../CallToAction/CallToAction';
 import { useEffect } from 'react';
+import CallToAction from '../CallToAction/CallToAction';
 import heroVideo from '../../assets/hero-bg.mp4';
 
 const Hero = ({ onCallClick }: { onCallClick: () => void }) => {
-
   useEffect(() => {
     const video = document.querySelector('video') as HTMLVideoElement | null;
-    if (video && video.paused) {
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((error) => {
-          console.log('Автозапуск видео заблокирован');
-        });
+    if (video) {
+
+      video.setAttribute('webkit-playsinline', 'true');
+
+      if (video.paused) {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            console.log('Автозапуск видео заблокирован');
+          });
+        }
       }
     }
   }, []);
-  
+
   return (
     <section id="hero" className="relative w-full h-[100dvh] flex items-center justify-start overflow-hidden">
-<video
-  className="absolute inset-0 w-full h-full object-cover z-0"
-  src={heroVideo}
-  autoPlay
-  muted
-  loop
-  playsInline
-  preload="auto"
-/>
+      <video
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        src={heroVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        controls={false}
+      />
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/30 z-10" />
@@ -59,6 +64,7 @@ const Hero = ({ onCallClick }: { onCallClick: () => void }) => {
 };
 
 export default Hero;
+
 
 
 
