@@ -42,17 +42,18 @@ const Header = ({ onCallClick }: HeaderProps) => {
 
   const navItems = [
     { href: '#hero', label: 'Главная' },
-    { href: '#features', label: 'Услуги' },
-    { href: '#how', label: 'Как мы работаем' },
-    { href: '#clients', label: 'Клиенты' },
     { href: '#works', label: 'Наши работы' },
+    { href: '#services', label: 'Услуги' },
+    { href: '#clients', label: 'Клиенты' },
     { href: '#contact', label: 'Контакты' },
+    { href: '#faq', label: 'FAQ' },
   ];
 
   return (
     <header className="fixed top-0 z-50 w-full bg-white shadow-md px-6 py-4 flex justify-between items-center transition-all duration-300">
-      <div className="text-2xl font-bold text-sky-600">RezkaGidro</div>
-
+      <a href="#hero" className="text-2xl font-bold text-sky-600 hover:opacity-80 transition">
+  RezkaGidro
+</a>
       {isDesktop ? (
         <>
           <nav className="flex space-x-6 text-sm text-slate-700">
