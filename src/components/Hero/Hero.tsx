@@ -5,8 +5,10 @@ import heroVideo from '../../assets/hero-bg.mp4';
 const Hero = ({ onCallClick }: { onCallClick: () => void }) => {
   useEffect(() => {
     const video = document.querySelector('video') as HTMLVideoElement | null;
+
     if (video) {
-      video.setAttribute('webkit-playsinline', 'true');
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', 'true'); // Safari iOS
 
       const tryPlay = () => {
         const playPromise = video.play();
@@ -65,6 +67,7 @@ const Hero = ({ onCallClick }: { onCallClick: () => void }) => {
 };
 
 export default Hero;
+
 
 
 
