@@ -86,17 +86,18 @@ const Header = ({ onCallClick }: HeaderProps) => {
 
           <div
             ref={menuRef}
-            className={`absolute right-0 top-[55px] w-64 bg-white shadow-xl rounded-xl px-6 py-5 z-40 transform transition-all duration-300 ${
-              menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
+            className={`absolute right-0 top-[55px] w-64 bg-white shadow-xl rounded-xl px-6 py-5 z-40 transform transition-all duration-300 ease-out ${
+              menuOpen ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-2 scale-95 pointer-events-none'
             }`}
           >
             <nav className="flex flex-col gap-3 text-base text-slate-700">
-              {navItems.map(({ href, label }) => (
+              {navItems.map(({ href, label }, index) => (
                 <a
                   key={href}
                   href={href}
                   onClick={closeMenu}
-                  className="hover:text-sky-600 transition"
+                  className="hover:text-sky-600 transition-colors duration-200 py-2 px-3 rounded-lg hover:bg-sky-50"
+                  style={{ transitionDelay: `${index * 50}ms` }}
                 >
                   {label}
                 </a>
