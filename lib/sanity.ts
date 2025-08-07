@@ -21,3 +21,24 @@ export const fetchContacts = async () =>
 
 export const fetchWorks = async () =>
   sanityClient.fetch(`*[_type == "work"]{title, image, category}`)
+
+export const submitContactForm = async (data: {
+  name: string;
+  phone: string;
+  email?: string;
+  message?: string;
+  source: string;
+}) => {
+  const doc = {
+    _type: 'contactSubmission',
+    name: data.name,
+    phone: data.phone,
+    email: data.email || '',
+    message: data.message || '',
+    source: data.source,
+    submittedAt: new Date().toISOString(),
+    status: 'new',
+  };
+
+  return sanityClient.create(doc);
+};
