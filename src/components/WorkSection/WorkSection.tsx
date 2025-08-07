@@ -48,12 +48,12 @@ const WorksSection = () => {
 
   return (
     <section className="bg-sky-50 py-20 px-4 md:px-8" id="works">
-      <div className="max-w-6xl mx-auto text-left mb-12">
+      <div className="max-w-6xl mx-auto text-center mb-12">
         <h2 className="text-4xl md:text-5xl font-extrabold text-slate-800 mb-4">
-          Наши работы
+          С чем мы работаем?
         </h2>
-        <p className="text-slate-600 text-lg max-w-2xl">
-          В портфолио — проекты от архитектурных панелей до инженерных деталей. Мы умеем работать с разными задачами и материалами.
+        <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+          Гидроабразивная резка различных материалов для архитектуры, строительства и производства
         </p>
       </div>
 

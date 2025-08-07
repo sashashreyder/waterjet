@@ -5,11 +5,11 @@ import Modal from './components/Modal/Modal';
 import CallbackForm from './components/CallbackForm/CallbackForm';
 import ServicesSection from './components/ServicesSection/ServicesSection';
 import FeaturesSection from './components/FeaturesSection/FeaturesSection';
-import ClientsSection from './components/ClientsSection/ClientsSections';
 import WorksSection from './components/WorkSection/WorkSection';
 import FAQ from './components/Faq';
 import ContactSection from './components/ContactSection/ContactSection';
 import Footer from './components/Footer/Footer';
+import Presentation from './components/Presentation';
 import { initAOS } from './aos';
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
         <FeaturesSection />
         <WorksSection />
         <ServicesSection />
-        <ClientsSection />     
+        <Presentation />
         <FAQ />
         <ContactSection onCallClick={openModal} />
       </main>
