@@ -69,7 +69,7 @@ const Header = ({ onCallClick }: HeaderProps) => {
           </nav>
           <button
             onClick={onCallClick}
-            className="ml-6 px-4 py-2 bg-sky-600 text-white rounded-full text-sm hover:bg-sky-700 transition"
+            className="ml-6 px-4 py-2 bg-sky-600 text-white rounded-full text-sm hover:bg-sky-700 transition-colors duration-200"
           >
             Заказать звонок
           </button>
@@ -107,7 +107,7 @@ const Header = ({ onCallClick }: HeaderProps) => {
                 onCallClick();
                 closeMenu();
               }}
-              className="mt-4 px-4 py-2 bg-sky-600 text-white rounded-full text-sm hover:bg-sky-700 transition w-full"
+              className="mt-4 px-4 py-2 bg-sky-600 text-white rounded-full text-sm hover:bg-sky-700 transition-colors duration-200 w-full"
             >
               Заказать звонок
             </button>

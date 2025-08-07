@@ -3,8 +3,7 @@ import React, { useState, useEffect } from 'react';
 const Presentation: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+  const [isLoading, setIsLoading] = useState(false);
 
   // Array of slide images
   const slides = [
@@ -57,11 +56,8 @@ const Presentation: React.FC = () => {
   }, []);
 
   // Handle image loading
-  const handleImageLoad = (index: number) => {
-    setLoadedImages(prev => new Set([...prev, index]));
-    if (loadedImages.size >= slides.length - 1) {
-      setIsLoading(false);
-    }
+  const handleImageLoad = () => {
+    setIsLoading(false);
   };
 
   // Keyboard navigation
@@ -128,7 +124,7 @@ const Presentation: React.FC = () => {
           className={`w-full h-full object-contain transition-opacity duration-300 ${
             isLoading ? 'opacity-0' : 'opacity-100'
           }`}
-          onLoad={() => handleImageLoad(currentSlide)}
+          onLoad={handleImageLoad}
         />
         
         {/* Navigation Arrows */}
