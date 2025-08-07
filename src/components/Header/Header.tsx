@@ -42,11 +42,12 @@ const Header = ({ onCallClick }: HeaderProps) => {
 
   const navItems = [
     { href: '#hero', label: 'Главная' },
-    { href: '#works', label: 'Наши работы' },
+    { href: '#features', label: 'Преимущества' },
+    { href: '#works', label: 'Работы' },
     { href: '#services', label: 'Услуги' },
-    { href: '#clients', label: 'Клиенты' },
-    { href: '#contact', label: 'Контакты' },
+    { href: '#presentation', label: 'Презентация' },
     { href: '#faq', label: 'FAQ' },
+    { href: '#contact', label: 'Контакты' },
   ];
 
   return (

@@ -88,7 +88,7 @@ const Presentation: React.FC = () => {
   }, []);
 
   return (
-    <div className={`bg-sky-50 py-12 px-4 md:px-8 ${isFullscreen ? 'fixed inset-0 z-50' : ''}`}>
+    <div id="presentation" className={`bg-sky-50 py-12 px-4 md:px-8 ${isFullscreen ? 'fixed inset-0 z-50' : ''}`}>
       {/* Title and Controls */}
       <div className="max-w-6xl mx-auto text-center mb-14">
         <h2 className="text-4xl md:text-5xl font-extrabold text-slate-800 mb-3" data-aos="fade-up">

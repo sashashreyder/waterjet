@@ -4,3 +4,8 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Scroll offset for fixed header */
+html {
+  scroll-padding-top: 80px;
+}

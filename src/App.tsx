@@ -44,7 +44,7 @@ function App() {
           <WorksSection />
           <ServicesSection />
           <Presentation />
-          <FAQ />
+          <FAQ onContactClick={openModal} />
           <ContactSection onCallClick={openModal} />
         </main>
 
