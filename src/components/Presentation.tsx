@@ -3,9 +3,6 @@ import React, { useState, useEffect } from 'react';
 const Presentation: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   // Array of slide images
   const slides = [
@@ -48,71 +45,45 @@ const Presentation: React.FC = () => {
     setIsFullscreen(!isFullscreen);
   };
 
-  // Auto-scroll every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 5000);
+  // Auto-scroll every 5 seconds - temporarily disabled
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     nextSlide();
+  //   }, 5000);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
-  // Handle image loading
-  const handleImageLoad = () => {
-    setIsLoading(false);
-  };
 
-  // Touch handlers for mobile swipe
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
 
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
 
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
 
-    if (isLeftSwipe) {
-      nextSlide();
-    }
-    if (isRightSwipe) {
-      prevSlide();
-    }
-  };
+  // Keyboard navigation - temporarily disabled
+  // useEffect(() => {
+  //   const handleKeyPress = (event: KeyboardEvent) => {
+  //     switch (event.key) {
+  //       case 'ArrowRight':
+  //       case ' ':
+  //         event.preventDefault();
+  //         nextSlide();
+  //         break;
+  //       case 'ArrowLeft':
+  //         event.preventDefault();
+  //         prevSlide();
+  //         break;
+  //       case 'Escape':
+  //         setIsFullscreen(false);
+  //         break;
+  //       case 'f':
+  //         case 'F':
+  //           toggleFullscreen();
+  //           break;
+  //     }
+  //   };
 
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyPress = (event: KeyboardEvent) => {
-      switch (event.key) {
-        case 'ArrowRight':
-        case ' ':
-          event.preventDefault();
-          nextSlide();
-          break;
-        case 'ArrowLeft':
-          event.preventDefault();
-          prevSlide();
-          break;
-        case 'Escape':
-          setIsFullscreen(false);
-          break;
-        case 'f':
-        case 'F':
-          toggleFullscreen();
-          break;
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, []);
+  //   window.addEventListener('keydown', handleKeyPress);
+  //   return () => window.removeEventListener('keydown', handleKeyPress);
+  // }, []);
 
   return (
     <div id="presentation" className={`bg-sky-50 py-8 md:py-12 px-4 md:px-8 ${isFullscreen ? 'fixed inset-0 z-50' : ''}`}>
@@ -140,18 +111,10 @@ const Presentation: React.FC = () => {
 
       {/* Main Image */}
       <div className="relative w-full max-w-3xl mx-auto h-[250px] sm:h-[350px] md:h-[400px] lg:h-[500px] flex items-center justify-center bg-sky-50 rounded-xl shadow-lg mx-4">
-        {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="animate-spin rounded-full h-8 w-8 md:h-12 md:w-12 border-b-2 border-sky-500"></div>
-          </div>
-        )}
         <img
           src={slides[currentSlide]}
           alt={`Slide ${currentSlide + 1}`}
-          className={`w-full h-full object-contain transition-opacity duration-300 ${
-            isLoading ? 'opacity-0' : 'opacity-100'
-          }`}
-          onLoad={handleImageLoad}
+          className="w-full h-full object-contain transition-opacity duration-300"
         />
         
         {/* Navigation Arrows */}
@@ -182,12 +145,7 @@ const Presentation: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Touch Instructions */}
-      <div className="text-center mt-4 md:hidden">
-        <p className="text-slate-500 text-xs">
-          Свайпните влево/вправо для навигации
-        </p>
-      </div>
+
     </div>
   );
 };

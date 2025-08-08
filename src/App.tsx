@@ -10,10 +10,10 @@ import FAQ from './components/Faq';
 import ContactSection from './components/ContactSection/ContactSection';
 import Footer from './components/Footer/Footer';
 import Presentation from './components/Presentation';
-
 import BackToTop from './components/BackToTop';
 import LoadingScreen from './components/LoadingScreen';
 import CookieConsent from './components/CookieConsent';
+import AdminPanel from './components/AdminPanel';
 import { initAOS } from './aos';
 
 function App() {
@@ -50,15 +50,16 @@ function App() {
 
         <Footer />
         <BackToTop />
-        <CookieConsent />
+                       <CookieConsent />
+               <AdminPanel />
 
-        <Modal isOpen={isModalOpen} onClose={closeModal}>
-          <CallbackForm />
-        </Modal>
-      </div>
-    </>
-  );
-}
+               <Modal isOpen={isModalOpen} onClose={closeModal}>
+                 <CallbackForm />
+               </Modal>
+             </div>
+           </>
+         );
+       }
 
 export default App;
 
