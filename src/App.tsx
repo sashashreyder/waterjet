@@ -11,14 +11,11 @@ import ContactSection from './components/ContactSection/ContactSection';
 import Footer from './components/Footer/Footer';
 import Presentation from './components/Presentation';
 import BackToTop from './components/BackToTop';
-import LoadingScreen from './components/LoadingScreen';
 import CookieConsent from './components/CookieConsent';
 import AdminPanel from './components/AdminPanel';
 import { initAOS } from './aos';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     initAOS();
   }, []);
@@ -27,14 +24,8 @@ function App() {
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
 
-  const handleLoadComplete = () => {
-    setIsLoading(false);
-  };
-
   return (
     <>
-      {/* {isLoading && <LoadingScreen onLoadComplete={handleLoadComplete} />} */}
-      
       <div className="flex flex-col min-h-screen">
         <Header onCallClick={openModal} />
 
@@ -50,16 +41,16 @@ function App() {
 
         <Footer />
         <BackToTop />
-                       <CookieConsent />
-               <AdminPanel />
+        <CookieConsent />
+        <AdminPanel />
 
-               <Modal isOpen={isModalOpen} onClose={closeModal}>
-                 <CallbackForm />
-               </Modal>
-             </div>
-           </>
-         );
-       }
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <CallbackForm />
+        </Modal>
+      </div>
+    </>
+  );
+}
 
 export default App;
 
