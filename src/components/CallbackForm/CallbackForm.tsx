@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import CallToAction from '../CallToAction/CallToAction';
-import styles from './CallbackForm.module.css';
 
 // Phone number formatting function
 const formatPhoneNumber = (value: string) => {
   // Remove all non-digits
   const phoneNumber = value.replace(/\D/g, '');
+  
+  // If empty, return empty
+  if (!phoneNumber) return '';
   
   // If it starts with 8, replace with 7
   let formatted = phoneNumber;
@@ -19,23 +20,22 @@ const formatPhoneNumber = (value: string) => {
   }
   
   // Format with dashes: +7 (XXX) XXX-XX-XX
-  if (formatted.length >= 1) {
-    formatted = '+' + formatted.slice(0, 1);
+  let result = '+7';
+  
+  if (formatted.length > 1) {
+    result += ' (' + formatted.slice(1, 4);
   }
-  if (formatted.length >= 4) {
-    formatted = formatted.slice(0, 2) + ' (' + formatted.slice(2, 5);
+  if (formatted.length > 4) {
+    result += ') ' + formatted.slice(4, 7);
   }
-  if (formatted.length >= 7) {
-    formatted = formatted.slice(0, 7) + ') ' + formatted.slice(7, 10);
+  if (formatted.length > 7) {
+    result += '-' + formatted.slice(7, 9);
   }
-  if (formatted.length >= 11) {
-    formatted = formatted.slice(0, 12) + '-' + formatted.slice(12, 14);
-  }
-  if (formatted.length >= 14) {
-    formatted = formatted.slice(0, 15) + '-' + formatted.slice(15, 17);
+  if (formatted.length > 9) {
+    result += '-' + formatted.slice(9, 11);
   }
   
-  return formatted;
+  return result;
 };
 
 // Email validation function
@@ -53,6 +53,7 @@ const CallbackForm = () => {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [phoneError, setPhoneError] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [nameError, setNameError] = useState('');
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -60,10 +61,23 @@ const CallbackForm = () => {
     setPhone(formatted);
     
     // Validate phone number (should be +7 (XXX) XXX-XX-XX format)
-    if (formatted.length > 0 && formatted.length < 18) {
+    const digitsOnly = formatted.replace(/\D/g, '');
+    if (formatted.length > 0 && digitsOnly.length < 11) {
       setPhoneError('Введите полный номер телефона');
     } else {
       setPhoneError('');
+    }
+  };
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setName(value);
+    
+    // Validate name (should not be empty)
+    if (value.trim().length === 0) {
+      setNameError('Введите ваше имя');
+    } else {
+      setNameError('');
     }
   };
 
@@ -83,7 +97,13 @@ const CallbackForm = () => {
     e.preventDefault();
     
     // Validate required fields
-    if (!phone || phone.length < 18) {
+    if (!name.trim()) {
+      setNameError('Введите ваше имя');
+      return;
+    }
+    
+    const phoneDigits = phone.replace(/\D/g, '');
+    if (!phone || phoneDigits.length < 11) {
       setPhoneError('Введите полный номер телефона');
       return;
     }
@@ -119,6 +139,7 @@ const CallbackForm = () => {
       setMessage('');
       setPhoneError('');
       setEmailError('');
+      setNameError('');
       setTimeout(() => setSubmitStatus('idle'), 3000);
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -130,7 +151,7 @@ const CallbackForm = () => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full">
+    <div className="w-full">
       <div className="text-center mb-6">
         <h2 className="text-2xl font-bold text-slate-800 mb-2">
           Оставьте заявку
@@ -144,11 +165,17 @@ const CallbackForm = () => {
         <div>
           <input
             type="text"
+            required
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={handleNameChange}
             placeholder="Ваше имя"
-            className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all duration-200"
+            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all duration-200 ${
+              nameError ? 'border-red-300 focus:ring-red-500' : 'border-slate-200'
+            }`}
           />
+          {nameError && (
+            <p className="mt-1 text-red-500 text-sm">{nameError}</p>
+          )}
         </div>
 
         <div>
