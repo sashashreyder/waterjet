@@ -33,7 +33,7 @@ function App() {
 
   return (
     <>
-      {isLoading && <LoadingScreen onLoadComplete={handleLoadComplete} />}
+      {/* {isLoading && <LoadingScreen onLoadComplete={handleLoadComplete} />} */}
       
       <div className="flex flex-col min-h-screen">
         <Header onCallClick={openModal} />

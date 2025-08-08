@@ -4,6 +4,8 @@ const Presentation: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   // Array of slide images
   const slides = [
@@ -60,6 +62,31 @@ const Presentation: React.FC = () => {
     setIsLoading(false);
   };
 
+  // Touch handlers for mobile swipe
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    }
+    if (isRightSwipe) {
+      prevSlide();
+    }
+  };
+
   // Keyboard navigation
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
@@ -88,34 +115,34 @@ const Presentation: React.FC = () => {
   }, []);
 
   return (
-    <div id="presentation" className={`bg-sky-50 py-12 px-4 md:px-8 ${isFullscreen ? 'fixed inset-0 z-50' : ''}`}>
+    <div id="presentation" className={`bg-sky-50 py-8 md:py-12 px-4 md:px-8 ${isFullscreen ? 'fixed inset-0 z-50' : ''}`}>
       {/* Title and Controls */}
-      <div className="max-w-6xl mx-auto text-center mb-14">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-slate-800 mb-3" data-aos="fade-up">
+      <div className="max-w-6xl mx-auto text-center mb-8 md:mb-14">
+        <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-slate-800 mb-2 md:mb-3" data-aos="fade-up">
           Наши Клиенты и Работы
         </h2>
-        <p className="text-slate-600 text-lg max-w-2xl mx-auto" data-aos="fade-up">
+        <p className="text-slate-600 text-sm md:text-lg max-w-2xl mx-auto px-4" data-aos="fade-up">
           Презентация наших проектов и клиентских работ
         </p>
       </div>
 
-      <div className="max-w-4xl mx-auto mb-4 flex justify-between items-center">
-        <div className="text-slate-600 text-sm">
+      <div className="max-w-4xl mx-auto mb-4 flex justify-between items-center px-4">
+        <div className="text-slate-600 text-xs md:text-sm">
           {currentSlide + 1} / {slides.length}
         </div>
         <button
           onClick={toggleFullscreen}
-          className="text-slate-600 hover:text-slate-800 text-sm transition-all duration-200"
+          className="text-slate-600 hover:text-slate-800 text-xs md:text-sm transition-all duration-200 p-2"
         >
           {isFullscreen ? '✕' : '⤢'}
         </button>
       </div>
 
       {/* Main Image */}
-      <div className="relative w-full max-w-3xl mx-auto h-[500px] flex items-center justify-center bg-sky-50 rounded-xl shadow-lg">
+      <div className="relative w-full max-w-3xl mx-auto h-[250px] sm:h-[350px] md:h-[400px] lg:h-[500px] flex items-center justify-center bg-sky-50 rounded-xl shadow-lg mx-4">
         {isLoading && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sky-500"></div>
+            <div className="animate-spin rounded-full h-8 w-8 md:h-12 md:w-12 border-b-2 border-sky-500"></div>
           </div>
         )}
         <img
@@ -130,7 +157,7 @@ const Presentation: React.FC = () => {
         {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-slate-800/20 hover:bg-slate-800/40 text-slate-800 px-3 py-2 rounded-md text-xl font-bold transition-all duration-200"
+          className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 bg-slate-800/20 hover:bg-slate-800/40 text-slate-800 px-2 py-1 md:px-3 md:py-2 rounded-md text-lg md:text-xl font-bold transition-all duration-200"
           aria-label="Previous slide"
         >
           ＜
@@ -138,7 +165,7 @@ const Presentation: React.FC = () => {
         
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-slate-800/20 hover:bg-slate-800/40 text-slate-800 px-3 py-2 rounded-md text-xl font-bold transition-all duration-200"
+          className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 bg-slate-800/20 hover:bg-slate-800/40 text-slate-800 px-2 py-1 md:px-3 md:py-2 rounded-md text-lg md:text-xl font-bold transition-all duration-200"
           aria-label="Next slide"
         >
           ＞
@@ -153,6 +180,13 @@ const Presentation: React.FC = () => {
             style={{ width: `${((currentSlide + 1) / slides.length) * 100}%` }}
           />
         </div>
+      </div>
+
+      {/* Mobile Touch Instructions */}
+      <div className="text-center mt-4 md:hidden">
+        <p className="text-slate-500 text-xs">
+          Свайпните влево/вправо для навигации
+        </p>
       </div>
     </div>
   );
