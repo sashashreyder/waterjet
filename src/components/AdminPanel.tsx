@@ -18,6 +18,11 @@ const AdminPanel = () => {
 
   useEffect(() => {
     loadSubmissions();
+    
+    // Refresh submissions every 2 seconds to catch new submissions
+    const interval = setInterval(loadSubmissions, 2000);
+    
+    return () => clearInterval(interval);
   }, []);
 
   const loadSubmissions = () => {
@@ -53,7 +58,10 @@ const AdminPanel = () => {
   if (!isVisible) {
     return (
       <button
-        onClick={() => setIsVisible(true)}
+        onClick={() => {
+          setIsVisible(true);
+          loadSubmissions(); // Refresh when opening
+        }}
         className="fixed bottom-4 left-4 bg-slate-400/20 text-slate-600 px-2 py-1 rounded text-xs hover:bg-slate-400/30 transition-colors opacity-30 hover:opacity-100"
       >
         • ({submissions.length})
@@ -105,6 +113,13 @@ const AdminPanel = () => {
             Заявки ({submissions.length})
           </h2>
           <div className="flex gap-2">
+            <button
+              onClick={loadSubmissions}
+              className="px-3 py-1 bg-sky-500 text-white rounded text-sm hover:bg-sky-600"
+              title="Обновить"
+            >
+              🔄
+            </button>
             <button
               onClick={clearAll}
               className="px-3 py-1 bg-red-500 text-white rounded text-sm hover:bg-red-600"
