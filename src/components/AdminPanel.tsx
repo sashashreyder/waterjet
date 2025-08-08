@@ -46,7 +46,7 @@ const AdminPanel = () => {
   };
 
   const handleLogin = () => {
-    if (password === 'AdminBestPoint2025!') {
+    if (password === 'Admin2025!') {
       setIsAuthenticated(true);
       setPassword('');
     } else {
