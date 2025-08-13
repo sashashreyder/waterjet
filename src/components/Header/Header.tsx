@@ -54,16 +54,19 @@ const Header = ({ onCallClick }: HeaderProps) => {
     { number: '+7 (495) 203-17-78', href: 'tel:+74952031778' },
     { number: '+7 (926) 743-29-09', href: 'tel:+79267432909' },
   ];
-  
+
+  // Единый класс для телефонов на мобильных (верх и низ совпадают)
+  const mobilePhoneClass = 'flex items-center gap-1 leading-none text-xs text-sky-600';
+
   return (
     <header className="fixed top-0 z-50 w-full bg-white shadow-md px-6 py-4 flex justify-between items-center transition-all duration-300">
       <a href="#hero" className="text-2xl font-bold text-sky-600 hover:opacity-80 transition">
         RezkaGidro
       </a>
-  
+
       {isDesktop ? (
         <>
-          <nav className="flex space-x-6 text-sm text-slate-700">
+          <nav className="flex gap-6 text-sm text-slate-700">
             {navItems.map(({ href, label }) => (
               <a
                 key={href}
@@ -74,7 +77,7 @@ const Header = ({ onCallClick }: HeaderProps) => {
               </a>
             ))}
           </nav>
-  
+
           <div className="ml-6 flex flex-row gap-4 text-sm text-slate-700 max-xl:flex-col max-xl:items-end">
             {phoneNumbers.map((phone) => (
               <a
@@ -86,7 +89,7 @@ const Header = ({ onCallClick }: HeaderProps) => {
               </a>
             ))}
           </div>
-  
+
           <button
             onClick={onCallClick}
             className="ml-6 px-4 py-2 bg-sky-600 text-white rounded-full text-sm hover:bg-sky-700 transition-colors duration-200"
@@ -96,19 +99,15 @@ const Header = ({ onCallClick }: HeaderProps) => {
         </>
       ) : (
         <>
-
-          <div className="flex flex-col items-center gap-1 text-xs text-sky-600 mr-3">
+          {/* Телефоны в шапке на мобиле — такие же, как в меню ниже */}
+          <div className="flex flex-col items-end gap-1 mr-3">
             {phoneNumbers.map((phone) => (
-              <a
-                key={phone.number}
-                href={phone.href}
-                className="flex items-center gap-1"
-              >
+              <a key={phone.number} href={phone.href} className={mobilePhoneClass}>
                 <Phone size={14} /> {phone.number}
               </a>
             ))}
           </div>
-  
+
           <button
             onClick={() => setMenuOpen((prev) => !prev)}
             className="text-sky-600"
@@ -116,7 +115,7 @@ const Header = ({ onCallClick }: HeaderProps) => {
           >
             {menuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
-  
+
           <div
             ref={menuRef}
             className={`absolute right-0 top-[55px] w-64 bg-white shadow-xl rounded-xl px-6 py-5 z-40 transform transition-all duration-300 ease-out ${
@@ -138,19 +137,16 @@ const Header = ({ onCallClick }: HeaderProps) => {
                 </a>
               ))}
             </nav>
-  
-            <div className="mt-4 flex flex-col items-center gap-1 text-sky-600">
+
+            {/* Телефоны в выпадающем меню — полностью совпадают с верхними */}
+            <div className="mt-4 flex flex-col items-end gap-1">
               {phoneNumbers.map((phone) => (
-                <a
-                  key={phone.number}
-                  href={phone.href}
-                  className="flex items-center gap-2 hover:underline"
-                >
+                <a key={phone.number} href={phone.href} className={mobilePhoneClass}>
                   <Phone size={16} /> {phone.number}
                 </a>
               ))}
             </div>
-  
+
             <button
               onClick={() => {
                 onCallClick();
@@ -164,9 +160,11 @@ const Header = ({ onCallClick }: HeaderProps) => {
         </>
       )}
     </header>
-  )};
-  
-  export default Header;
+  );
+};
+
+export default Header;
+
   
 
 
