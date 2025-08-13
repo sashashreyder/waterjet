@@ -45,7 +45,7 @@ const Header = ({ onCallClick }: HeaderProps) => {
     { href: '#features', label: 'Преимущества' },
     { href: '#works', label: 'Материалы' },
     { href: '#services', label: 'Услуги' },
-    { href: '#presentation', label: 'Наши Работы' },
+    { href: '#gallery', label: 'Наши Работы' },
     { href: '#faq', label: 'FAQ' },
     { href: '#contact', label: 'Контакты' },
   ];
