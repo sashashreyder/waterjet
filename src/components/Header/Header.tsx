@@ -55,7 +55,6 @@ const Header = ({ onCallClick }: HeaderProps) => {
     { number: '+7 (926) 743-29-09', href: 'tel:+79267432909' },
   ];
 
-  // Единый класс для телефонов на мобильных (верх и низ совпадают)
   const mobilePhoneClass = 'flex items-center gap-1 leading-none text-xs text-sky-600';
 
   return (
@@ -99,7 +98,7 @@ const Header = ({ onCallClick }: HeaderProps) => {
         </>
       ) : (
         <>
-          {/* Телефоны в шапке на мобиле — такие же, как в меню ниже */}
+
           <div className="flex flex-col items-end gap-1 mr-3">
             {phoneNumbers.map((phone) => (
               <a key={phone.number} href={phone.href} className={mobilePhoneClass}>
@@ -138,7 +137,6 @@ const Header = ({ onCallClick }: HeaderProps) => {
               ))}
             </nav>
 
-            {/* Телефоны в выпадающем меню — полностью совпадают с верхними */}
             <div className="mt-4 flex flex-col items-end gap-1">
               {phoneNumbers.map((phone) => (
                 <a key={phone.number} href={phone.href} className={mobilePhoneClass}>
