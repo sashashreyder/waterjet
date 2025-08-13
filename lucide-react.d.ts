@@ -10,5 +10,8 @@ declare module 'lucide-react' {
     export const Phone: React.FC<IconProps>;
     export const Menu: React.FC<IconProps>;
     export const X: React.FC<IconProps>;
+    export const ChevronLeft: React.FC<IconProps>;
+    export const ChevronRight: React.FC<IconProps>;
+    export const Maximize2: React.FC<IconProps>;
   }
   

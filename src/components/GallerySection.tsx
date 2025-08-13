@@ -2,7 +2,6 @@ import { useEffect, useState, useCallback } from 'react';
 import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
 
 
-
 type Item = { src: string; alt: string; label: string };
 
 const items: { src: string; alt: string; label: string }[] = [
