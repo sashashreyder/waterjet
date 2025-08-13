@@ -9,7 +9,6 @@ import WorksSection from './components/WorkSection/WorkSection';
 import FAQ from './components/Faq';
 import ContactSection from './components/ContactSection/ContactSection';
 import Footer from './components/Footer/Footer';
-import Presentation from './components/Presentation';
 import BackToTop from './components/BackToTop';
 import LoadingScreen from './components/LoadingScreen';
 import CookieConsent from './components/CookieConsent';
@@ -43,7 +42,6 @@ function App() {
           <FeaturesSection />
           <WorksSection />
           <ServicesSection />
-          <Presentation />
           <FAQ onContactClick={openModal} />
           <ContactSection onCallClick={openModal} />
         </main>
