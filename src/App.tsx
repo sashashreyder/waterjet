@@ -13,6 +13,7 @@ import BackToTop from './components/BackToTop';
 import LoadingScreen from './components/LoadingScreen';
 import CookieConsent from './components/CookieConsent';
 import AdminPanel from './components/AdminPanel';
+import GallerySection from './components/GallerySection';
 import { initAOS } from './aos';
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
           <FeaturesSection />
           <WorksSection />
           <ServicesSection />
+          <GallerySection />
           <FAQ onContactClick={openModal} />
           <ContactSection onCallClick={openModal} />
         </main>

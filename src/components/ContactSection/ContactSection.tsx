@@ -14,11 +14,38 @@ const ContactSection = ({ onCallClick }: { onCallClick: () => void }) => {
               Контакты
             </h2>
             <ul className="text-slate-600 text-lg space-y-4">
-              <li><strong>Телефон:</strong> <a href="tel:+74952031778" className="text-sky-600 hover:underline">+7 (495) 203-17-78</a></li>
-              <li><strong>Email:</strong> <a href="mailto:sales@rezka-gidro.ru" className="text-sky-600 hover:underline">sales@rezka-gidro.ru</a></li>
-              <li><strong>Время работы:</strong> Пн–Пт 9:00–18:00</li>
-              <li><strong>Адрес:</strong> 142144, г. Москва, поселок Щапово, дом № 25</li>
-            </ul>
+  <li>
+    <strong>Телефоны:</strong>{' '}
+    <a
+      href="tel:+74952031778"
+      className="text-sky-600 hover:underline mr-4"
+    >
+      +7 (495) 203-17-78
+    </a>
+    <a
+      href="tel:+79267432909"
+      className="text-sky-600 hover:underline"
+    >
+      +7 (926) 743-29-09
+    </a>
+  </li>
+  <li>
+    <strong>Email:</strong>{' '}
+    <a
+      href="mailto:sales@rezka-gidro.ru"
+      className="text-sky-600 hover:underline"
+    >
+      sales@rezka-gidro.ru
+    </a>
+  </li>
+  <li>
+    <strong>Время работы:</strong> Пн–Пт 9:00–18:00
+  </li>
+  <li>
+    <strong>Адрес:</strong> 142144, г. Москва, поселок Щапово, дом № 25
+  </li>
+</ul>
+
 
             <div className="flex gap-4 mt-15">
               <button
