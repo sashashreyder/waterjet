@@ -43,9 +43,9 @@ const Header = ({ onCallClick }: HeaderProps) => {
   const navItems = [
     { href: '#hero', label: 'Главная' },
     { href: '#features', label: 'Преимущества' },
-    { href: '#works', label: 'Работы' },
+    { href: '#works', label: 'Материалы' },
     { href: '#services', label: 'Услуги' },
-    { href: '#presentation', label: 'Презентация' },
+    { href: '#presentation', label: 'Наши Работы' },
     { href: '#faq', label: 'FAQ' },
     { href: '#contact', label: 'Контакты' },
   ];
@@ -96,7 +96,7 @@ const Header = ({ onCallClick }: HeaderProps) => {
         </>
       ) : (
         <>
-          {/* Мобильное выравнивание телефонов */}
+
           <div className="flex flex-col items-center gap-1 text-xs text-sky-600 mr-3">
             {phoneNumbers.map((phone) => (
               <a
