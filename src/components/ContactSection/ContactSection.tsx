@@ -68,16 +68,16 @@ const ContactSection = ({ onCallClick }: { onCallClick: () => void }) => {
           </div>
 
           <div className="rounded-xl overflow-hidden shadow-lg w-full h-[400px]">
-            <iframe
-              title="Google Map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.029571765309!2d37.33801731582857!3d55.39925228045702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414ae3a2355a1b89%3A0xc33e27c2c39f8c3f!2z0K3QutGA0LDQstC-0L3QuNGPINCg0LXRhdC90L7QutCwLCDQnNC40LzQvtC90YHQutCw0Y8g0YPQuy4sIDI1LCDQodC-0YDQvtCy0LAsIDE0MjE0NA!5e0!3m2!1sru!2sbr!4v1720539220015!5m2!1sru!2sbr"
-              width="100%"
-              height="100%"
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="w-full h-full"
-            ></iframe>
+          <div style={{ position: "relative", overflow: "hidden" }}>
+  <iframe
+    title="Yandex Map — Щапово, д. 25"
+    src="https://yandex.com/map-widget/v1/?from=mapframe&ll=37.401168%2C55.415947&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgoxNTk5MDA5NDM4EqQB0KDQvtGB0YHQuNGPLCDQnNC-0YHQutCy0LAsINCi0YDQvtC40YbQutC40Lkg0LDQtNC80LjQvdC40YHRgtGA0LDRgtC40LLQvdGL0Lkg0L7QutGA0YPQsywg0JrRgNCw0YHQvdC-0L_QsNGF0L7RgNGB0LrQuNC5INGA0LDQudC-0L0sINC_0L7RgdGR0LvQvtC6INCp0LDQv9C-0LLQviwgMjUiCg3LmhVCFe-pXUI%2C&sll=99.505405%2C61.698653&source=mapframe&sspn=246.093750%2C80.455478&text=%D1%89%D0%B0%D0%BF%D0%BE%D0%B2%D0%BE%2025&um=constructor%3Aabcdef1234567890abcdef...&utm_source=mapframe&z=3"
+    width="100%"
+    height="400"
+    allowFullScreen
+    style={{ position: "relative", border: 0 }}
+  />
+</div>
           </div>
         </div>
       </div>
