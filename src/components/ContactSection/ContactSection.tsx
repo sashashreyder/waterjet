@@ -69,14 +69,16 @@ const ContactSection = ({ onCallClick }: { onCallClick: () => void }) => {
 
           <div className="rounded-xl overflow-hidden shadow-lg w-full h-[400px]">
           <div style={{ position: "relative", overflow: "hidden" }}>
-  <iframe
-    title="Yandex Map — Щапово, д. 25"
-    src="https://yandex.com/map-widget/v1/?from=mapframe&ll=37.401168%2C55.415947&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgoxNTk5MDA5NDM4EqQB0KDQvtGB0YHQuNGPLCDQnNC-0YHQutCy0LAsINCi0YDQvtC40YbQutC40Lkg0LDQtNC80LjQvdC40YHRgtGA0LDRgtC40LLQvdGL0Lkg0L7QutGA0YPQsywg0JrRgNCw0YHQvdC-0L_QsNGF0L7RgNGB0LrQuNC5INGA0LDQudC-0L0sINC_0L7RgdGR0LvQvtC6INCp0LDQv9C-0LLQviwgMjUiCg3LmhVCFe-pXUI%2C&sll=99.505405%2C61.698653&source=mapframe&sspn=246.093750%2C80.455478&text=%D1%89%D0%B0%D0%BF%D0%BE%D0%B2%D0%BE%2025&um=constructor%3Aabcdef1234567890abcdef...&utm_source=mapframe&z=3"
-    width="100%"
-    height="400"
-    allowFullScreen
-    style={{ position: "relative", border: 0 }}
-  />
+          <iframe
+  title="Yandex Map — Щапово, д. 25"
+  src="https://yandex.com/map-widget/v1/?ll=37.401168,55.415947&z=17&pt=37.401168,55.415947,pm2rdm"
+  width="100%"
+  height="400"
+  allowFullScreen
+  style={{ position: "relative", border: "0" }} 
+/>
+
+
 </div>
           </div>
         </div>
