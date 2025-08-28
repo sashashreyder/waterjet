@@ -1,16 +1,13 @@
-// src/components/CallbackForm.tsx
+
 import React, { useState } from "react";
 import { db } from "../../firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
-// Маска отображения: +7 (XXX) XXX-XX-XX
 const formatPhoneForView = (value: string) => {
   const digits = value.replace(/\D/g, "");
 
-  // заменяем ведущую 8 на 7
   const normalized = digits.startsWith("8") ? "7" + digits.slice(1) : digits;
 
-  // добавляем 7, если номер начинается не с 7
   const with7 = normalized.startsWith("7") ? normalized : (normalized ? "7" + normalized : "");
 
   let out = "+7";
@@ -21,14 +18,13 @@ const formatPhoneForView = (value: string) => {
   return out;
 };
 
-// Нормализация для БД: E.164  -> +7XXXXXXXXXX (11 цифр)
 const toE164 = (viewValue: string) => {
   const digits = viewValue.replace(/\D/g, "");
-  // приводим к 7xxxxxxxxxx
+
   let d = digits;
   if (d.startsWith("8")) d = "7" + d.slice(1);
   if (!d.startsWith("7") && d.length > 0) d = "7" + d;
-  // итог: +7XXXXXXXXXX, берём только первые 11 цифр (если вдруг лишние)
+
   return d ? `+${d.slice(0, 11)}` : "";
 };
 
@@ -88,7 +84,6 @@ const CallbackForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // базовая валидация
     if (!name.trim()) {
       setNameError("Введите ваше имя");
       return;
@@ -111,12 +106,12 @@ const CallbackForm: React.FC = () => {
 
       await addDoc(collection(db, "requests"), {
         name: name.trim(),
-        phoneRaw: phoneView,      // как ввёл пользователь (для удобства)
-        phoneE164,                // нормализованный для поиска/звонка
+        phoneRaw: phoneView,      
+        phoneE164,                
         email: email || "",
         comment: comment || "",
         source: "contact",
-        status: "new",            // можно менять потом на "in_progress" / "done"
+        status: "new",          
         createdAt: serverTimestamp(),
       });
 
