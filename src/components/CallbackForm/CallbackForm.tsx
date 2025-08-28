@@ -1,15 +1,11 @@
-
 import React, { useState } from "react";
 import { db } from "../../firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 const formatPhoneForView = (value: string) => {
-  const digits = value.replace(/\D/g, "");
-
+  const digits = value.replace(/\D/g, "").slice(0, 11);
   const normalized = digits.startsWith("8") ? "7" + digits.slice(1) : digits;
-
-  const with7 = normalized.startsWith("7") ? normalized : (normalized ? "7" + normalized : "");
-
+  const with7 = normalized.startsWith("7") ? normalized : normalized ? "7" + normalized : "";
   let out = "+7";
   if (with7.length > 1) out += " (" + with7.slice(1, 4);
   if (with7.length > 4) out += ") " + with7.slice(4, 7);
@@ -20,28 +16,21 @@ const formatPhoneForView = (value: string) => {
 
 const toE164 = (viewValue: string) => {
   const digits = viewValue.replace(/\D/g, "");
-
-  let d = digits;
+  let d = digits.slice(0, 11);
   if (d.startsWith("8")) d = "7" + d.slice(1);
   if (!d.startsWith("7") && d.length > 0) d = "7" + d;
-
   return d ? `+${d.slice(0, 11)}` : "";
 };
 
-const isValidEmail = (email: string) =>
-  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 const CallbackForm: React.FC = () => {
   const [phoneView, setPhoneView] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [comment, setComment] = useState("");
-
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">(
-    "idle"
-  );
-
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [phoneError, setPhoneError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [nameError, setNameError] = useState("");
@@ -49,14 +38,8 @@ const CallbackForm: React.FC = () => {
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatPhoneForView(e.target.value);
     setPhoneView(formatted);
-
     const onlyDigits = formatted.replace(/\D/g, "");
-    // ожидаем 11 цифр (7 + 10 цифр)
-    if (formatted && onlyDigits.length < 11) {
-      setPhoneError("Введите полный номер телефона");
-    } else {
-      setPhoneError("");
-    }
+    setPhoneError(formatted && onlyDigits.length < 11 ? "Введите полный номер телефона" : "");
   };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -106,13 +89,12 @@ const CallbackForm: React.FC = () => {
 
       await addDoc(collection(db, "requests"), {
         name: name.trim(),
-        phoneRaw: phoneView,      
-        phoneE164,                
+        phone: phoneE164,
+        phoneRaw: phoneView,
         email: email || "",
-        comment: comment || "",
-        source: "contact",
-        status: "new",          
-        createdAt: serverTimestamp(),
+        message: comment || "",
+        status: "new",
+        submittedAt: serverTimestamp(),
       });
 
       setSubmitStatus("success");
@@ -135,7 +117,6 @@ const CallbackForm: React.FC = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Name */}
         <div>
           <input
             type="text"
@@ -151,7 +132,6 @@ const CallbackForm: React.FC = () => {
           {nameError && <p className="mt-1 text-red-500 text-sm">{nameError}</p>}
         </div>
 
-        {/* Phone */}
         <div>
           <input
             type="tel"
@@ -168,7 +148,6 @@ const CallbackForm: React.FC = () => {
           {phoneError && <p className="mt-1 text-red-500 text-sm">{phoneError}</p>}
         </div>
 
-        {/* Email (optional) */}
         <div>
           <input
             type="email"
@@ -183,7 +162,6 @@ const CallbackForm: React.FC = () => {
           {emailError && <p className="mt-1 text-red-500 text-sm">{emailError}</p>}
         </div>
 
-        {/* Comment (optional) */}
         <div>
           <textarea
             value={comment}
@@ -233,4 +211,5 @@ const CallbackForm: React.FC = () => {
 };
 
 export default CallbackForm;
+
 
